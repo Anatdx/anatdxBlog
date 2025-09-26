@@ -17,8 +17,7 @@ timezone: Asia/Shanghai
 title: Anatdx's Blog # the main title
 
 tagline: |
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"> <img alt="Static Badge" src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-red"> </a>
-
+  technology and life
 description: >- # used by seo meta and the atom feed
   A blog about programming, technology, and life.
 
@@ -99,7 +98,7 @@ theme_mode: # [light | dark]
 cdn: ""
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/favicons/web-app-manifest-512x512.png"
+avatar: "assets/img/favicons/avater.gif"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
