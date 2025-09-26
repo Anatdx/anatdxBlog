@@ -152,6 +152,12 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
+# Whether to enable the background animation
+background_animation: true
+
+# Waifu (看板娘) settings
+waifu: true
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:

@@ -2,21 +2,27 @@
 layout: compress
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 
-{% include origin-type.html %}
-
-{% include lang.html %}
-
-{% if site.theme_mode %}
-  {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
-{% endif %}
+{% include origin-type.html %} {% include lang.html %} {% if site.theme_mode %}
+{% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %} {%
+endif %}
 
 <!-- `site.alt_lang` can specify a language different from the UI -->
-<html lang="{{ page.lang | default: site.alt_lang | default: site.lang }}" {{ prefer_mode }}>
+<html
+  lang="{{ page.lang | default: site.alt_lang | default: site.lang }}"
+  {{
+  prefer_mode
+  }}
+>
   {% include head.html %}
 
   <body>
+    <!-- 背景动画 -->
+    {% if site.background_animation %} {% include animated-background.html %}
+    {%endif %}
+
+    <!-- 侧边栏 -->
     {% include sidebar.html lang=lang %}
 
     <div id="main-wrapper" class="d-flex justify-content-center">
@@ -24,37 +30,38 @@ layout: compress
         {% include topbar.html lang=lang %}
 
         <div class="row flex-grow-1">
-          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
-            {% if layout.refactor or layout.layout == 'default' %}
-              {% include refactor-content.html content=content lang=lang %}
-            {% else %}
-              {{ content }}
-            {% endif %}
+          <main
+            aria-label="Main Content"
+            class="col-12 col-lg-11 col-xl-9 px-md-4"
+          >
+            {% if layout.refactor or layout.layout == 'default' %} {% include
+            refactor-content.html content=content lang=lang %} {% else %} {{
+            content }} {% endif %}
           </main>
 
           <!-- panel -->
-          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+          <aside
+            aria-label="Panel"
+            id="panel-wrapper"
+            class="col-xl-3 ps-2 text-muted"
+          >
             <div class="access">
-              {% include_cached update-list.html lang=lang %}
-              {% include_cached trending-tags.html lang=lang %}
+              {% include_cached update-list.html lang=lang %} {% include_cached
+              trending-tags.html lang=lang %}
             </div>
 
-            {% for _include in layout.panel_includes %}
-              {% assign _include_path = _include | append: '.html' %}
-              {% include {{ _include_path }} lang=lang %}
-            {% endfor %}
+            {% for _include in layout.panel_includes %} {% assign _include_path
+            = _include | append: '.html' %} {% include {{ _include_path }}
+            lang=lang %} {% endfor %}
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
-            {% for _include in layout.tail_includes %}
-              {% assign _include_path = _include | append: '.html' %}
-              {% include {{ _include_path }} lang=lang %}
-            {% endfor %}
-
-            {% include_cached footer.html lang=lang %}
+            {% for _include in layout.tail_includes %} {% assign _include_path =
+            _include | append: '.html' %} {% include {{ _include_path }}
+            lang=lang %} {% endfor %} {% include_cached footer.html lang=lang %}
           </div>
         </div>
 
@@ -62,7 +69,11 @@ layout: compress
       </div>
 
       <aside aria-label="Scroll to Top">
-        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+        <button
+          id="back-to-top"
+          type="button"
+          class="btn btn-lg btn-box-shadow"
+        >
           <i class="fas fa-angle-up"></i>
         </button>
       </aside>
@@ -70,84 +81,16 @@ layout: compress
 
     <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
 
-    {% if site.pwa.enabled %}
-      {% include_cached notification.html lang=lang %}
+    {% if site.pwa.enabled %} {% include_cached notification.html lang=lang %}
     {% endif %}
 
     <!-- Embedded scripts -->
 
-    {% for _include in layout.script_includes %}
-      {% assign _include_path = _include | append: '.html' %}
-      {% include {{ _include_path }} %}
-    {% endfor %}
-
+    {% for _include in layout.script_includes %} {% assign _include_path =
+    _include | append: '.html' %} {% include {{ _include_path }} %} {% endfor %}
     {% include_cached search-loader.html lang=lang %}
-    
 
-    <script>
-      const cdnPath = 'https://cdn.jsdelivr.net/gh/Anatdx/live2d-widget-v3@v15';
-      const config = {
-        // 资源路径
-        path: {
-          homePath: '/',
-          modelPath: cdnPath + "/Resources/",
-          cssPath: cdnPath + "/waifu.css",
-          tipsJsonPath: cdnPath + "/waifu-tips.json",
-          tipsJsPath: cdnPath + "/waifu-tips.js",
-          live2dCorePath: cdnPath + "/Core/live2dcubismcore.js",
-          live2dSdkPath: cdnPath + "/live2d-sdk.js"
-        },
-        // 工具栏tools: ["hitokoto", "asteroids", "express", "switch-model", "switch-texture", "photo", "info", "quit"]
-        tools: ["express", "hitokoto", "photo", "quit"],
-        // 模型拖拽
-        drag: {
-          enable: false,
-          direction: ["x", "y"]
-        },
-        // 模型切换(order: 顺序切换，random: 随机切换)
-        switchType: "order"
-      }
-
-      // 加载资源并初始化
-      if (screen.width >= 768) {
-        Promise.all([
-          loadExternalResource(config.path.cssPath, "css"),
-          loadExternalResource(config.path.live2dCorePath, "js"),
-          loadExternalResource(config.path.live2dSdkPath, "js"),
-          loadExternalResource(config.path.tipsJsPath, "js")
-       ]).then(() => {
-          initWidget({
-            homePath: config.path.homePath,
-            waifuPath: config.path.tipsJsonPath,
-            cdnPath: config.path.modelPath,
-            tools: config.tools,
-            dragEnable: config.drag.enable,
-            dragDirection: config.drag.direction,
-            switchType: config.switchType
-          });
-        });
-      }
-
-      // 异步加载资源
-      function loadExternalResource(url, type) {
-        return new Promise((resolve, reject) => {
-          let tag;
-          if (type === "css") {
-            tag = document.createElement("link");
-            tag.rel = "stylesheet";
-            tag.href = url;
-          }
-          else if (type === "js") {
-            tag = document.createElement("script");
-            tag.src = url;
-          }
-          if (tag) {
-            tag.onload = () => resolve(url);
-            tag.onerror = () => reject(url);
-            document.head.appendChild(tag);
-          }
-        });
-      }
-    </script>
+    <!-- 看板娘 -->
+    {% if site.waifu %} {% include waifu.html %} {% endif %}
   </body>
 </html>
