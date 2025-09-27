@@ -20,8 +20,8 @@ endif %}
   <body>
     <!-- 背景动画 -->
     {% if site.background_animation %} {% include animated-background.html %}
-    {%endif %}
-
+    {%endif %} 
+    
     <!-- 侧边栏 -->
     {% include sidebar.html lang=lang %}
 
@@ -92,5 +92,8 @@ endif %}
 
     <!-- 看板娘 -->
     {% if site.waifu %} {% include waifu.html %} {% endif %}
+
+    <!-- 心形点击效果 -->
+    <script type="text/javascript" src="/assets/js/love_onClick.js"></script>
   </body>
 </html>

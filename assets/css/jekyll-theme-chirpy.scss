@@ -7,8 +7,9 @@
   .bundle
 {%- endif -%}
 ';
-
 /* append your custom style below */
+
+/* 星空背景 */
 
 div.starfield {
   position: fixed;
@@ -416,4 +417,53 @@ div.starfield .moving-3 {
   to {
     transform-origin: 25vw 23vh;
   }
+}
+
+/* 侧边栏背景图片添加 */
+#sidebar {
+  background-image: url(/assets/img/SidebarBackground.png); /* <- change background image */
+  background-size: cover; /* <- customize the image size */
+  background-repeat: no-repeat; /* <- no-repeat */
+  background-position: top; /* <- image position */
+}
+
+/* 侧边栏相关文字样式设置 */
+#sidebar .site-title {
+  color: #ffffff;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+#sidebar .site-subtitle {
+  color: #ffffff;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+}
+#sidebar ul li.nav-item a.nav-link span {
+  font-size: 100%;
+}
+#sidebar ul li.nav-item a.nav-link {
+  color: #ffffff;
+}
+
+/* github贡献图 */
+/*
+<!-- GOES INTO BODY -->
+<div id="gh" data-login="YOUR_GITHUB_LOGIN"></div>
+
+<!-- GOES INTO THE END OF BODY -->
+<script src="http://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.js"></script>
+*/
+
+.ghCalendarHeader {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+.ghThumbNail {
+  display: none;
+}
+#gh a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+.ghCalendarCard {
+  border: var(--language-border-color) 1px solid;
+  border-radius: 0.5rem;
 }
