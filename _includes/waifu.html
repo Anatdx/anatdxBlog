@@ -1,5 +1,9 @@
 <script>
   const cdnPath = "https://cdn.jsdelivr.net/gh/Anatdx/live2d-widget-v3@main";
+  const modelTextures =
+    cdnPath +
+    "/Resources/model/Instant_noodles/Instant_noodles.8192/texture_00.webp";
+
   const config = {
     // 资源路径
     path: {
@@ -24,20 +28,23 @@
 
   // 加载资源并初始化
   if (screen.width >= 768) {
-    Promise.all([
-      loadExternalResource(config.path.cssPath, "css"),
-      loadExternalResource(config.path.live2dCorePath, "js"),
-      loadExternalResource(config.path.live2dSdkPath, "js"),
-      loadExternalResource(config.path.tipsJsPath, "js"),
-    ]).then(() => {
-      initWidget({
-        homePath: config.path.homePath,
-        waifuPath: config.path.tipsJsonPath,
-        cdnPath: config.path.modelPath,
-        tools: config.tools,
-        dragEnable: config.drag.enable,
-        dragDirection: config.drag.direction,
-        switchType: config.switchType,
+    // 首先确保模型图片已经加载完成
+    loadExternalResource(modelTextures, "webp").then(() => {
+      Promise.all([
+        loadExternalResource(config.path.cssPath, "css"),
+        loadExternalResource(config.path.live2dCorePath, "js"),
+        loadExternalResource(config.path.live2dSdkPath, "js"),
+        loadExternalResource(config.path.tipsJsPath, "js"),
+      ]).then(() => {
+        initWidget({
+          homePath: config.path.homePath,
+          waifuPath: config.path.tipsJsonPath,
+          cdnPath: config.path.modelPath,
+          tools: config.tools,
+          dragEnable: config.drag.enable,
+          dragDirection: config.drag.direction,
+          switchType: config.switchType,
+        });
       });
     });
   }
@@ -52,6 +59,9 @@
         tag.href = url;
       } else if (type === "js") {
         tag = document.createElement("script");
+        tag.src = url;
+      } else if (type === "webp") {
+        tag = new Image();
         tag.src = url;
       }
       if (tag) {
