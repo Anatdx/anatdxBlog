@@ -43,13 +43,13 @@ bundle
 使用GitHub page的用户请跳过此章节
 
 进入自己的Cloudflare账户主页，点击左边侧栏中的*计算（Workers）*
-![计算（Workers）](/assets/img/2025-09-29-记录搭建过程/计算(Workers).png)
+![计算（Workers）](/assets/img/2025-10-05-buildingMyWebsite/Workers.png)
 *计算（Workers）*
 点击创建应用程序，选择Pages，再选择*导入现有存储库*，连接你的GitHub账户（已连接可忽略），完成后选择刚才创建的仓库
-![这里我的仓库名叫anatdxBlog](/assets/img/2025-09-29-记录搭建过程/这里我的仓库名叫anatdxBlog.png)
+![这里我的仓库名叫anatdxBlog](/assets/img/2025-10-05-buildingMyWebsite/minecalledanatdxBlog.png)
 *这里我的仓库名叫anatdxBlog*
 选择好仓库后进入设置构建和部署，构建设置中框架预设选择`Jekyll`，再添加一个环境变量`BUNDLE_WITHOUT = ""`,点击*保存并部署*
-![设置构建和部署](/assets/img/2025-09-29-记录搭建过程/设置构建和部署.png)
+![设置构建和部署](/assets/img/2025-10-05-buildingMyWebsite/buildanddeployment.png)
 *字体问题下划线看起来像空格*
 构建完毕之后Cloudflare Page就部署完毕了，可以去<https://yourname.pages.dev>查看。
 
