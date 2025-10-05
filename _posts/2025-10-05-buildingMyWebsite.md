@@ -89,7 +89,7 @@ bundle exec jekyll s
 构建成功后访问<http://127.0.0.1:4000>即可看到网站效果。
 
 ## 写文章
-Jekyll支持多种格式，包括Markdown、HTML、Textile等，这里以Markdown为例，文件名格式需为`年-月-日-标题.md`，如`2025-09-29-记录搭建过程.md`，并且要求在文件开头添加yaml格式的头信息
+Jekyll支持多种格式，包括Markdown、HTML、Textile等，这里以Markdown为例，文件名格式需为`年-月-日-标题.md`，如`2025-10-05-buildingMyWebsite.md`，并且要求在文件开头添加yaml格式的头信息
 ```yaml
 ---
 layout: post
