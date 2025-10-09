@@ -10,9 +10,9 @@ tag: [Jekyll]
 本文记录了此Jekyll博客网站的搭建过程，也算是一篇小白向的Jekyll静态博客搭建教程，~~新人写文章别喷太狠（~~
 
 ## 安装依赖
-Jekyll需要安装Ruby，Windows下可以用[RubyInstaller](https://rubyinstaller.org/downloads/)安装,选择with Devkit的适合你电脑的安装包。
+Jekyll需要安装Ruby，Windows下可以用[RubyInstaller](https://rubyinstaller.org/downloads/)安装，选择with Devkit的适合你电脑的安装包。
 
-开始安装同意协议后勾上`MSYS2 and MINGW development toolchain`,安装完毕后弹出cmd窗口，回车等待窗口自己关闭。
+开始安装同意协议后勾上`MSYS2 and MINGW development toolchain`，安装完毕后弹出cmd窗口，回车等待窗口自己关闭。
 
 打开一个新的cmd窗口，输入
 ```shell
@@ -24,7 +24,7 @@ jekyll -v
 ```
 检查是否成功安装，成功安装会输出版本号（本文编写时为4.4.1）
 
-本站使用了Chirpy主题，构建此主题需要额外安装[Node.js](https://nodejs.org/zh-cn/download),直接下载msi文件安装即可，安装完毕后执行以下命令来测试：
+本站使用了Chirpy主题，构建此主题需要额外安装[Node.js](https://nodejs.org/zh-cn/download)，直接下载msi文件安装即可，安装完毕后执行以下命令来测试：
 ```shell
 node -v
 npm -v
@@ -32,7 +32,7 @@ npm -v
 如能正常输出版本号即安装成功。
 
 ## 创建仓库
-Chirpy的作者非常贴心地为我们准备了[chirpy-starter](https://github.com/cotes2020/chirpy-starter/),访问页面后点击*Use this template*创建一个新仓库，接下来把仓库clone到本地并且安装依赖：
+Chirpy的作者非常贴心地为我们准备了[chirpy-starter](https://github.com/cotes2020/chirpy-starter/)，访问页面后点击*Use this template*创建一个新仓库，接下来把仓库clone到本地并且安装依赖：
 ```shell
 git clone https://github.com/yourname/yourrepository
 bundle
@@ -40,15 +40,13 @@ bundle
 这样基本的开发环境就配置好了。
 
 ## 配置Cloudflare Pages
-使用GitHub page的用户请跳过此章节
-
 进入自己的Cloudflare账户主页，点击左边侧栏中的*计算（Workers）*
 ![计算（Workers）](/assets/img/2025-10-05-buildingMyWebsite/Workers.png)
 *计算（Workers）*
 点击创建应用程序，选择Pages，再选择*导入现有存储库*，连接你的GitHub账户（已连接可忽略），完成后选择刚才创建的仓库
 ![这里我的仓库名叫anatdxBlog](/assets/img/2025-10-05-buildingMyWebsite/minecalledanatdxBlog.png)
 *这里我的仓库名叫anatdxBlog*
-选择好仓库后进入设置构建和部署，构建设置中框架预设选择`Jekyll`，再添加一个环境变量`BUNDLE_WITHOUT = ""`,点击*保存并部署*
+选择好仓库后进入设置构建和部署，构建设置中框架预设选择`Jekyll`，再添加一个环境变量`BUNDLE_WITHOUT = ""`，点击*保存并部署*
 ![设置构建和部署](/assets/img/2025-10-05-buildingMyWebsite/buildanddeployment.png)
 *字体问题下划线看起来像空格*
 构建完毕之后Cloudflare Page就部署完毕了，可以去<https://yourname.pages.dev>查看。
