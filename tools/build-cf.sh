@@ -4,12 +4,22 @@
 set -e
 echo "> Initializing git submodules..."
 git submodule update --init --recursive
+if [ ! -f waifu/live2d-sdk.js ]; then
+  echo "ERROR: waifu submodule not populated (waifu/live2d-sdk.js missing). Check submodule clone."
+  exit 1
+fi
 echo "> Building site with Jekyll..."
 bundle exec jekyll build
 echo "> Copying waifu assets to _site..."
-cp -r waifu _site/waifu
+mkdir -p _site/waifu
+cp -r waifu/* _site/waifu/
 # 覆盖子模块中缺失的文件（如 AnAn 的 config.json）
 if [ -d waifu-override ]; then
   echo "> Applying waifu-override..."
   cp -r waifu-override/* _site/waifu/
 fi
+if [ ! -f _site/waifu/live2d-sdk.js ]; then
+  echo "ERROR: _site/waifu/live2d-sdk.js missing after copy."
+  exit 1
+fi
+echo "> Waifu assets OK."
