@@ -1,5 +1,6 @@
 <script>
-  const cdnPath = "{{ site.baseurl | default: '' }}/waifu";
+  // 使用绝对 URL，避免相对路径或缓存导致仍请求 CDN
+  const cdnPath = "{{ site.url }}{{ site.baseurl }}/waifu";
   const config = {
     // 资源路径
     path: {

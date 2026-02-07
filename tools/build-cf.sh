@@ -8,3 +8,8 @@ echo "> Building site with Jekyll..."
 bundle exec jekyll build
 echo "> Copying waifu assets to _site..."
 cp -r waifu _site/waifu
+# 覆盖子模块中缺失的文件（如 AnAn 的 config.json）
+if [ -d waifu-override ]; then
+  echo "> Applying waifu-override..."
+  cp -r waifu-override/* _site/waifu/
+fi
