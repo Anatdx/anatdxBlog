@@ -217,6 +217,7 @@ exclude:
   - "*.gemspec"
   - docs
   - tools
+  - waifu
   - README.md
   - LICENSE
   - purgecss.js
