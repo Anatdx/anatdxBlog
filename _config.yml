@@ -95,7 +95,8 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn:
+# Set to false to disable CDN (use local/origin resources only)
+cdn: false
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "assets/img/favicons/avater.gif"

@@ -1,3 +1,6 @@
 [submodule "assets/lib"]
 	path = assets/lib
 	url = https://github.com/Anatdx/chirpy-static-assets.git
+[submodule "waifu"]
+	path = waifu
+	url = https://github.com/Anatdx/live2d-widget-v3.git
