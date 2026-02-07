@@ -19,14 +19,22 @@ if [ -d waifu-override ]; then
   cp -r waifu-override/* _site/waifu/
 fi
 # AnAn 模型文件名去空格，避免 fetch 与服务器对 URL 处理不一致
+# 同时将 4096 贴图替换为 2048（由 waifu-override 提供），减少构建产物体积
 if [ -d _site/waifu/Resources/model/AnAn ]; then
-  echo "> Renaming AnAn model files (remove spaces)..."
+  echo "> Normalizing AnAn model assets..."
   cd _site/waifu/Resources/model/AnAn
-  [ -d "AnAn - model.4096" ] && mv "AnAn - model.4096" "AnAn-model.4096"
   [ -f "AnAn - model.moc3" ] && mv "AnAn - model.moc3" "AnAn-model.moc3"
   [ -f "AnAn - model.cdi3.json" ] && mv "AnAn - model.cdi3.json" "AnAn-model.cdi3.json"
   [ -f "AnAn - model.physics3.json" ] && mv "AnAn - model.physics3.json" "AnAn-model.physics3.json"
   [ -f "AnAn - model.model3.json" ] && mv "AnAn - model.model3.json" "AnAn-model.model3.json"
+  if [ -d "AnAn-model.2048" ]; then
+    # 兼容可能被引用的另一份 model3.json：如存在 2048 贴图则强制与 AnAn.model3.json 一致
+    [ -f "AnAn.model3.json" ] && cp "AnAn.model3.json" "AnAn-model.model3.json"
+    # 删除 4096 贴图目录（2048 贴图位于 AnAn-model.2048）
+    rm -rf "AnAn - model.4096" "AnAn-model.4096"
+  else
+    echo "WARN: AnAn-model.2048 missing; skip removing 4096 textures."
+  fi
   cd - > /dev/null
 fi
 if [ ! -f _site/waifu/live2d-sdk.js ]; then
