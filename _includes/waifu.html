@@ -1,4 +1,19 @@
 <script>
+  // 修复 AnAn 等模型文件名含空格导致 fetch 失败：对 URL 路径做编码
+  (function () {
+    var origFetch = window.fetch;
+    window.fetch = function (input, init) {
+      if (typeof input === 'string' && input.indexOf(' ') !== -1) {
+        try {
+          var u = new URL(input, window.location.origin);
+          u.pathname = u.pathname.split('/').map(function (s) { return s.replace(/ /g, '%20'); }).join('/');
+          input = u.toString();
+        } catch (e) {}
+      }
+      return origFetch.call(this, input, init);
+    };
+  })();
+
   // 使用绝对 URL，避免相对路径或缓存导致仍请求 CDN
   const cdnPath = "{{ site.url }}{{ site.baseurl }}/waifu";
   const config = {
