@@ -14,6 +14,28 @@
     };
   })();
 
+  // 检测 GPU 最大纹理尺寸，避免 4096 纹理模型无法显示
+  (function () {
+    try {
+      var canvas = document.createElement('canvas');
+      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+      var maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
+      window.__waifuMaxTextureSize = maxTex;
+      var currentModelId = localStorage.getItem('modelId');
+      if (maxTex && maxTex < 2048) {
+        if (currentModelId !== '1') {
+          localStorage.setItem('modelId', '1'); // Hiyori
+          localStorage.setItem('modelTexturesId', '0');
+          console.warn('[waifu] MAX_TEXTURE_SIZE < 2048, fallback to Hiyori.');
+        }
+      } else if (currentModelId === null || currentModelId === '1') {
+        localStorage.setItem('modelId', '0'); // AnAn
+        localStorage.setItem('modelTexturesId', '0');
+      }
+    } catch (e) {}
+  })();
+
   // 使用绝对 URL，避免相对路径或缓存导致仍请求 CDN
   const cdnPath = "{{ site.url }}{{ site.baseurl }}/waifu";
   const config = {
