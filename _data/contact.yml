@@ -2,9 +2,11 @@
 
 - type: github
   icon: "fab fa-github"
+  url: "https://gh.anatdx.moe"
 
 - type: twitter
-  icon: "fa-brands fa-x-twitter"
+  icon: "fa-brands fa-twitter"
+  url: "https://x.anatdx.moe"
 
 - type: email
   icon: "fas fa-envelope"
@@ -13,6 +15,27 @@
 - type: rss
   icon: "fas fa-rss"
   noblank: true
+
+- type: telegram
+  icon: "fa-brands fa-telegram"
+  url: "https://tg.anatdx.moe"
+
+- type: aifadian
+  icon: "fa-solid fa-heart"
+  url: "https://afd.anatdx.moe"
+
+- type: stack-overflow
+  icon: "fa-brands fa-stack-overflow"
+  url: "https://so.anatdx.moe"
+
+- type: bluesky
+  icon: "fa-brands fa-bluesky"
+  url: "https://bsky.anatdx.moe"
+
+- type: steam
+  icon: "fa-brands fa-steam"
+  url: "https://stm.anatdx.moe"
+
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
@@ -23,13 +46,6 @@
 #   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
 #   url:  ''                  # Fill with your Linkedin homepage
 #
-# - type: stack-overflow
-#   icon: 'fab fa-stack-overflow'
-#   url:  ''                  # Fill with your stackoverflow homepage
-#
-# - type: bluesky
-#   icon: 'fa-brands fa-bluesky'
-#   url: ''                   # Fill with your Bluesky profile link
 #
 # - type: reddit
 #   icon: 'fa-brands fa-reddit'
