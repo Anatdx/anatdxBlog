@@ -153,6 +153,9 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
+include:
+  - .well-known
+
 # Whether to enable the background animation
 background_animation: true
 
